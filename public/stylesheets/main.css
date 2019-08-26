@@ -1,0 +1,110 @@
+.formdiv {
+	width: 45%; 
+	margin: 0 auto;
+}
+
+.myform {
+	margin-top: 30px;
+}
+
+body {
+	margin-top: 100px;
+	margin-bottom: 50px;
+}
+
+#addbtn {
+	margin: 10px;
+}
+
+#addform {
+	display: none;
+	margin-top: 20px;
+}
+
+#backform {
+	padding: 0px;
+}
+
+.btn-block+.btn-block {
+    margin-top: 0px; 
+}
+
+#delform {
+	display: none;
+}
+
+#toggleform {
+	display: none;
+}
+
+.col-md-3 {
+	padding: 3px;
+    max-width: 100%; 
+}
+
+.col-md-3 img {
+	opacity: 1;
+	transition: opacity 1s;
+}
+
+.col-md-3:hover img{
+	opacity: 0.2;
+}
+
+.imgbox {
+    position: relative;
+    display: inline-block; /* Make the width of box same as image */
+}
+
+.col-md-3 a {
+	color: black;
+}
+
+.imgbox .boxtext{
+	opacity: 0;
+    position: absolute;
+    z-index: 999;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 40%; /* Adjust this value to move the positioned div up and down */
+    text-align: center;
+    width: 60%; /* Set the width of the positioned div */
+    transition: opacity 1s;
+}
+
+.col-md-3:hover .boxtext{
+	opacity: 1;
+}
+
+hr {
+	border: 1px solid black;
+}
+
+.headings {
+	text-align: right;
+	font-weight: bold;
+}
+
+.data {
+	background-color: white;
+	color: black;
+	cursor: default;
+}
+
+.data:hover {
+	background-color: #0275d8;
+	color: white;
+}
+
+#alldetails {
+	margin: 10px;
+}
+
+#divider {
+	border: 2px solid black;
+}
+
+#solution {
+	margin-bottom: 15px;
+}

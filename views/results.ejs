@@ -1,0 +1,21 @@
+<% include partials/header %>
+
+<div class="row justify-content-around">
+	<% if(movies.Search){ %>
+		<% movies.Search.forEach(function (movie){ %>
+			<% if(movie.Poster) { %>
+				<div class="col-md-3 text-center mx-1 my-2" >
+				  	<a href="/details/<%= movie.imdbID %>" class="imgbox">
+				  		<img class="rounded" src="<%= movie.Poster %>" alt="Poster coming soon...">
+				  		<h5 class="boxtext"><%= movie.Title %> <hr>(<%= movie.Year %>)</h5>
+				  	</a>
+				</div>
+		    <% } %>
+		<% }); %>
+	<%} else { %>
+		<h3>No Results! Try modifying your Search....</h3>
+	<% } %>
+</div>
+
+
+<% include partials/footer %>

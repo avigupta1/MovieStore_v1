@@ -1,0 +1,195 @@
+<% include partials/header %>
+
+<% if(movie.Title) { %>
+	<div class="row text-center justify-content-around">
+		<h1 class="col-sm-12"><%= movie.Title %> (<%= movie.Year %>)</h1>
+	</div>
+	<div class="row justify-content-center" id="alldetails">
+		<img class="col-sm-5" src="<%= movie.Poster %>" alt="Coming Soon">
+
+		<div class="col-sm-5">
+			<div class="row data rounded">
+				<div class="col-sm-4 headings">
+					Year:
+				</div>
+				<div class="col-sm-8">
+					<%= movie.Year %>
+				</div>
+			</div>
+			<div class="row data rounded">
+				<div class="col-sm-4 headings">
+					Rated:
+				</div>
+				<div class="col-sm-8">
+					<%= movie.Rated %>
+				</div>
+			</div>
+			<div class="row data rounded">
+				<div class="col-sm-4 headings">
+					Released:
+				</div>
+				<div class="col-sm-8">
+					<%= movie.Released %>
+				</div>
+			</div>
+			<div class="row data rounded">
+				<div class="col-sm-4 headings">
+					Runtime:
+				</div>
+				<div class="col-sm-8">
+					<%= movie.Runtime %>
+				</div>
+			</div>
+			<div class="row data rounded">
+				<div class="col-sm-4 headings">
+					Director:
+				</div>
+				<div class="col-sm-8">
+					<%= movie.Director %>
+				</div>
+			</div>
+			<div class="row data rounded">
+				<div class="col-sm-4 headings">
+					Genre:
+				</div>
+				<div class="col-sm-8">
+					<%= movie.Genre %>
+				</div>
+			</div>
+			<div class="row data rounded">
+				<div class="col-sm-4 headings">
+					Writer:
+				</div>
+				<div class="col-sm-8">
+					<%= movie.Writer %>
+				</div>
+			</div>
+			<div class="row data rounded">
+				<div class="col-sm-4 headings">
+					Actors:
+				</div>
+				<div class="col-sm-8">
+					<%= movie.Actors %>
+				</div>
+			</div>
+			<div class="row data rounded">
+				<div class="col-sm-4 headings">
+					Plot:
+				</div>
+				<div class="col-sm-8">
+					<%= movie.Plot %>
+				</div>
+			</div>
+			<div class="row data rounded">
+				<div class="col-sm-4 headings">
+					Metascore:
+				</div>
+				<div class="col-sm-8">
+					<%= movie.Metascore %>
+				</div>
+			</div>
+			<div class="row data rounded">
+				<div class="col-sm-4 headings">
+					IMDb Rating:
+				</div>
+				<div class="col-sm-8">
+					<%= movie.imdbRating %>
+				</div>
+			</div>
+		
+		</div>
+	</div>
+
+	<% if(currentUser){ %>
+		<% var x=0; %>
+		<% var id; %>
+		<% currentUser.moviecart.forEach(function (cartobj){ %>
+			<% if(cartobj.Title==movie.Title && cartobj.Released==movie.Released) { %>
+				<% x=1; %>
+				<% id = cartobj._id; %>
+			<% } %>
+		<% }) %>
+		<% currentUser.seriescart.forEach(function (cartobj){ %>
+			<% if(cartobj.Title==movie.Title && cartobj.Released==movie.Released) { %>
+				<% x=1; %>
+				<% id = cartobj._id; %>
+			<% } %>
+		<% }) %>
+
+		<% if(x==1){ %>
+			<div class="row text-center justify-content-around myform">
+				<h4 class="col-sm-10">This item is in your cart!</h1>
+			</div>
+			<div class="row text-center justify-content-around myform">
+				<form action="/home" class="col-sm-3" id="backform">
+					<button class="btn btn-outline-dark btn-block" type="submit">Go to Cart!</button>
+				</form>
+				<button class="col-sm-3 btn btn-outline-primary btn-block" id="togglebtn">Toggle Status</button>
+				<button class="col-sm-3 btn btn-outline-danger btn-block" id="delbtn">Remove from Cart</button>
+			</div>
+			<div class="row text-center justify-content-center myform rounded">
+				<form id="toggleform" class="col-sm-12" action="/details/<%= id %>/<%= movie.Type %>?_method=PUT" method="POST">
+					<div class="row text-center justify-content-around">
+						<div class="form-group col-sm-12">
+							<input type="text" class="form-control" name="togglevals[review]" placeholder="Review">
+						</div>
+					</div>
+					<div class="row text-center justify-content-around">
+						<div class="form-group col-sm-12">
+							<div class="custom-control custom-radio custom-control-inline">
+							  <input type="radio" id="customRadioInline1" value="Seen It!" name="togglevals[seen]" class="custom-control-input" checked>
+							  <label class="custom-control-label" for="customRadioInline1">Seen It!</label>
+							</div>
+							<div class="custom-control custom-radio custom-control-inline">
+							  <input type="radio" id="customRadioInline2" value="Yet to See" name="togglevals[seen]" class="custom-control-input">
+							  <label class="custom-control-label" for="customRadioInline2">Yet to See</label>
+							</div>
+						</div>
+					</div>
+					<div class="row text-center justify-content-around">
+						<div class="form-group col-sm-12">
+							<button type="submit" class="btn btn-outline-primary">Save!</button>
+						</div>
+					</div>
+				</form>
+				<form id="delform" class="col-sm-12" action="/details/<%= id %>/<%= movie.Type %>?_method=DELETE" method="POST">
+					<button class="btn btn-outline-danger btn-block">Hasta la Vista, baby!</button>
+				</form>
+			</div>
+			
+			
+		<% } else { %>
+			<div class="row text-center justify-content-around">
+				<button class=" col-sm-10 btn btn-outline-dark btn-block" id="addbtn">Add to my <%= movie.Type %> cart</button>
+			</div>
+			<form action="/add/<%= movie.imdbID %>" method="POST" id="addform">
+				<div class="row text-center justify-content-around">
+					<div class="form-group col-sm-10">
+						<input type="text" class="form-control" name="Title" value="<%= movie.Title %>" disabled>
+					</div>
+				</div>
+				<div class="row text-center justify-content-around">
+					<div class="form-group col-sm-10">
+						<input type="text" class="form-control" name="comment" placeholder="Add a comment">
+					</div>
+				</div>
+				<div class="row text-center justify-content-around">
+						<div class="form-group col-sm-10">
+						<button type="submit" class="btn btn-outline-primary">Save!</button>
+					</div>
+				</div>
+			</form>
+		<% } %>
+	<% } else { %>
+		<div class="row text-center justify-content-around">
+			<button class=" col-sm-10 btn btn-outline-dark btn-block" disabled="true">You need to be Logged In to Add to your <%= movie.Type %> cart</button>
+		</div>
+	<% } %>
+	
+	
+<% } else { %>
+	<h1>Sorry! We could not find the details you wanted! Please try again after some time!</h1>
+<% } %>
+
+
+<% include partials/footer %>

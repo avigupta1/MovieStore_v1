@@ -1,0 +1,79 @@
+<% include partials/header %>
+
+<div class="row text-center">
+	<h1 class="col-sm-12">Welcome to your home page, <%= currentUser.name %>!</h1>
+</div>
+
+<div class="row">
+	<h3 class="col-md-3">Your Movie Cart!</h3>
+</div>
+
+<div class="row justify-content-around">	
+	<% currentUser.moviecart.forEach(function (movie){ %>
+		<% if(movie.Poster) { %>
+			<div class="col-md-3 text-center mx-1 my-2" >
+			  	<a href="/details/<%= movie.imdbID %>" class="imgbox">
+			  		<img class="rounded" src="<%= movie.Poster %>" alt="Poster coming soon...">
+			  		<h5 class="boxtext">
+			  			<%= movie.Title %> 
+			  			<hr>
+			  			<% if(movie.seen=="Yet to See"){ %>
+			  				<% if(movie.comment.length==0){ %>
+			  					(no comment)
+			  				<% } else { %>
+			  					<%= movie.comment %>
+			  				<% } %>
+			  			<% } else { %>
+			  				<% if(movie.review.length==0){ %>
+			  					(no review)
+			  				<% } else { %>
+			  					<%= movie.review %>
+			  				<% } %>
+			  			<% } %>
+			  			<hr>
+			  			<%= movie.seen %>
+			  		</h5>
+			  	</a>
+			</div>
+	    <% } %>
+	<% }); %>
+</div>
+
+<hr id="divider">
+
+<div class="row">
+	<h3 class="col-md-3">Your Series Cart!</h3>
+</div>
+<div class="row justify-content-around">
+	<% currentUser.seriescart.forEach(function (series){ %>
+		<% if(series.Poster) { %>
+			<div class="col-md-3 text-center mx-1 my-2" >
+			  	<a href="/details/<%= series.imdbID %>" class="imgbox">
+			  		<img class="rounded" src="<%= series.Poster %>" alt="Poster coming soon...">
+			  		<h5 class="boxtext">
+			  			<%= series.Title %> 
+			  			<hr>
+			  			<% if(series.seen=="Yet to See"){ %>
+			  				<% if(series.comment.length==0){ %>
+			  					(no comment)
+			  				<% } else { %>
+			  					<%= series.comment %>
+			  				<% } %>
+			  			<% } else { %>
+			  				<% if(series.review.length==0){ %>
+			  					(no review)
+			  				<% } else { %>
+			  					<%= series.review %>
+			  				<% } %>
+			  			<% } %>
+			  			<hr>
+			  			<%= series.seen %>
+			  		</h5>
+			  	</a>
+			</div>
+	    <% } %>
+	<% }); %>
+</div>
+
+
+<% include partials/footer %>
