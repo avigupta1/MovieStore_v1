@@ -10,6 +10,8 @@ If you're cloning this repository, be sure to set up MongoDB properly. I have al
 Deployed on 30 August 2019!
 https://moviestore-ag.herokuapp.com/
 
+Deployed using Heroku, Remote database through mLab (mongolab)
+
 Description:
 1) Register/Login
 
