@@ -9,3 +9,5 @@ You can also remove stuff from your Cart - but I think you should save the Good 
 
 
 If you're cloning this repository, be sure to set up MongoDB properly. I have also added the node_modules directory. 
+
+Not yet deployed
