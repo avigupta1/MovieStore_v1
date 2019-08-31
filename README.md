@@ -47,5 +47,6 @@ Future Plans:
 1) Add OAuth Routes, to Login through Facebook/Twitter/Google
 2) Add "Watch Trailer" feature
 3) Add Friend functionality, to view Friends' Carts
-4) Create Mobile Friendly App
-5) Create Android App
+4) Add an AI Recommender System
+5) Create Mobile Friendly App
+6) Create Android App
